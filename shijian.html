@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		div{
+			height: 100px;
+			font-size: 50px;
+			border: 10px solid palevioletred;
+			margin-top: 10px;
+		}
+	</style>
+	<body>
+		<div id="box">
+			
+		</div>
+		<div id="box2">
+			
+		</div>
+		<div id="box3">
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		showtime();
+		setInterval(function (){
+			showtime();
+			(function (){
+			var stime = new Date();
+			var etime = new Date('2016,07,18,15:48:59');
+			var ltime = parseInt((etime.getTime() - stime.getTime())/1000);
+			var d = parseInt(ltime/(24*60*60))
+			var h = parseInt(ltime/(60*60)%24)
+			var m = parseInt(ltime/(60)%60)
+			var s = parseInt(ltime%60)
+			document.getElementById('box3').innerHTML = '还剩'+d+'天'+h+'小时'+m+'分钟'+s+'秒'
+			if(ltime<=0){
+				document.getElementById('box3').innerHTML= '结束'
+			}
+			
+			})()
+		},500)
+		//补领
+		function buling(i){
+			if(i<10){
+				i= '0'+i;
+			}
+			return i;
+		}
+		function showtime(){
+			var mydate = new Date();
+			var year = mydate.getFullYear();
+			var month = mydate.getMonth()+1;
+			var date1 = mydate.getDate();
+			var d = mydate.getDay();
+			var h = mydate.getHours();
+			var m = mydate.getMinutes();
+			var s = mydate.getSeconds();
+			m = buling(m);
+			s = buling(s)
+			var weekday = new Array(7);
+			weekday[0] = '星期日';
+			weekday[1] = '星期一';
+			weekday[2] = '星期二';
+			weekday[3] = '星期三';
+			weekday[4] = '星期四';
+			weekday[5] = '星期五';
+			weekday[6] = '星期六';
+		document.getElementById('box').innerHTML=year+'年'+month+'月'+date1+'日'+weekday[d]+h+':'+m+':'+s;
+		}
+		
+		newtime()
+		function newtime(){
+			var stime = new Date();
+			var etime = new Date('2016,07,20');
+			var ltime = Math.ceil((etime.getTime() - stime.getTime())/(24*60*60*1000));
+			document.getElementById('box2').innerHTML = '距离还有'+ltime+'天'
+		}
+		
+		
+		
+	</script>
+</html>
